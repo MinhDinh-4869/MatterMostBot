@@ -26,4 +26,3 @@ class MattermostManager() :
         
         self.mmDriver.login()
         self.mmDriver.users.get_user( user_id='me' ) 
-    
