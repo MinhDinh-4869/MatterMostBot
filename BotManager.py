@@ -14,10 +14,13 @@ class BotManager:
         self.project = self.glM.gl.projects.get(PROJECT_ID)
         self.mergeRequests = []
         self.Post = None
+        self.iids = []
     
-    def GetAllMergeRequest(self,state=None, author_usernames=[], target_branch=None):
+    def GetAllMergeRequest(self,state='opened', author_usernames=[], target_branch=None):
         for user in author_usernames:
             self.mergeRequests+=self.project.mergerequests.list(state = state, author_username = user, target_branch=target_branch, iterator=True)
+            for mr in self.mergeRequests:
+                self.iids.append(mr.iid)
 
     def ProcessMergeRequestToSend(self, merge_request):
         status = 'Opening'
@@ -65,8 +68,10 @@ class BotManager:
         return False
     
     def Update(self):
-        loops = len(self.mergeRequests)
-        for _ in range(loops):
-            self.mergeRequests+=[self.project.mergerequests.get(self.mergeRequests[0].iid)]
-            self.mergeRequests.pop(0)
-        self.UpdateMergeRequestStatusInMattermost()
+        #loops = len(self.mergeRequests)
+        #for _ in range(loops):
+        #    self.mergeRequests+=[self.project.mergerequests.get(self.mergeRequests[0].iid)]
+        #    self.mergeRequests.pop(0)
+        if len(self.iids) > 0:
+            self.mergeRequests = self.project.mergerequests.list(iids=self.iids, iterator=True)
+            self.UpdateMergeRequestStatusInMattermost()
