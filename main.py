@@ -11,15 +11,18 @@ SAI_MEMBERS = ['lam.tranvan', 'luan.nguyen', 'minh.dinhcong', 'dung.nguyenquoc3'
                'hieu.nguyentrung10', 'phuc.vohuynhhoang', 'minh.phannhat', 'quan.luungoc', 'quan.letruong', 'kien.nguyenluong', 'hen.tranvan', 'vien.phamphu', 'hoang.vodinh', 'kien.lengoc', 'hieu.dotri2']
 if __name__ == '__main__' :
     bot = BotManager()
+    last_update = datetime.datetime.now()
     while(True):
         botResult = bot.IsBotTriggered()
         if botResult[0] == 'status' and botResult[1] != 'none':
             print('Getting status on branch %s'%(botResult[1]))
             bot.GetAllMergeRequest(state='opened', target_branch=botResult[1])
-        elif botResult[0] in ['update', 'reset']:
-            bot.Update()
         elif botResult[0] == 'off':
             break
+        if datetime.datetime.now() - last_update > datetime.timedelta(seconds=20):
+            print('Update')
+            last_update = datetime.datetime.now()
+            bot.Update()
         print('%s waiting for signal...'%datetime.datetime.astimezone(datetime.datetime.now()))
     bot.TurnedOffBot()
     print("Bot turned off")
