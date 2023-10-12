@@ -2,16 +2,16 @@ from operator import truediv
 from GitlabManager import GitlabManager
 from MattermostManger import MattermostManager
 
-GL_TOKEN = 'glpat-d44ao3DZL-iLJX3hME_X'
-GL_HOST = 'https://git.gameloft.org/'
-PROJECT_ID = 5608
-MM_BUILDCHANNEL= 'zjx3u71su3g7ujabr5jerwdqqr'
-MM_TESTCHANNEL= 'w5mb3pm65f8axe5e9prozkdhcc'
+GL_TOKEN = ''
+GL_HOST = ''
+PROJECT_ID = 0
+MM_BUILDCHANNEL= ''
+MM_TESTCHANNEL= ''
 MM_DEFAULTCHANNEL = MM_BUILDCHANNEL
-MM_AUTHORID = '1znesrbpopgxtkmztocqr9tzuo' #minh.dinhcong
-MM_AUTHORIZEDUSER = ['minh.dinhcong@gameloft.com',  'dung.nguyenquoc3@gameloft.com', 'luan.nguyen@gameloft.com', 'hen.tranvan@gameloft.com', 'vien.phamphu@gameloft.com', 'nghia.tranhuu@gameloft.com']
-SAI_MEMBERS = ['lam.tranvan', 'luan.nguyen', 'minh.dinhcong', 'dung.nguyenquoc3', 'huy.buidang', 'loc.vovan', 'nghia.tranhuu', 'thach.nguyenngoc3', 'bao.nguyenngogia', 'thao.tranngan', 'anh.nguyenduy2','quang.phantri',
-               'hieu.nguyentrung10', 'phuc.vohuynhhoang', 'minh.phannhat', 'quan.luungoc', 'quan.letruong', 'kien.nguyenluong', 'hen.tranvan', 'vien.phamphu', 'hoang.vodinh', 'kien.lengoc', 'hieu.dotri2']
+MM_AUTHORID = '' #minh.dinhcong
+MM_AUTHORIZEDUSER = []
+SAI_MEMBERS = []
+
 
 class BotManager:
     def __init__(self):
